@@ -1,0 +1,430 @@
+/*
+ * Layout público: botões, cabeçalho, menu lateral, topo das páginas internas e rodapé.
+ */
+
+@theme {
+    --color-footer: #fff;
+}
+
+:root {
+    --gradient-brand: linear-gradient(var(--color-brand), var(--color-brand));
+    --gradient-button: linear-gradient(var(--color-brand), var(--color-brand));
+    --gradient-button-hover: linear-gradient(var(--color-brand-dark), var(--color-brand-dark));
+}
+
+@layer components {
+    /* ---------- Botões ---------- */
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 12px 24px;
+        border-radius: 8px;
+        font-size: 15px;
+        font-weight: 600;
+        line-height: 24px;
+        transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+        white-space: nowrap;
+    }
+
+    .btn-primary {
+        color: #fff;
+        background-color: var(--color-brand);
+    }
+
+    .btn-primary {
+        box-shadow: 0 10px 22px rgb(48 41 89 / 0.2);
+    }
+
+    .btn-primary:hover {
+        background-color: var(--color-secondary-500);
+    }
+
+    .btn-white {
+        color: var(--color-brand);
+        background-color: #fff;
+    }
+
+    .btn-white:hover {
+        color: #fff;
+        background-color: var(--color-dark-900);
+    }
+
+    .btn-outline {
+        color: var(--color-heading);
+        border: 1px solid var(--color-border);
+        background-color: transparent;
+    }
+
+    .btn-outline:hover {
+        border-color: var(--color-primary-500);
+        color: var(--color-primary-500);
+    }
+
+    .block--dark .btn-outline {
+        color: #fff;
+        border-color: rgb(255 255 255 / 0.3);
+    }
+
+    .btn-sm {
+        padding: 8px 16px;
+        font-size: 14px;
+        line-height: 22px;
+    }
+
+    /* ---------- Logótipo ---------- */
+    .brand-logo {
+        display: inline-flex;
+        align-items: center;
+        flex-shrink: 0;
+        padding: 3px 6px;
+        border-radius: 6px;
+        background-color: #fff;
+    }
+
+    .brand-logo img {
+        display: block;
+        width: 86px;
+        height: auto;
+    }
+
+    /* ---------- Cabeçalho ---------- */
+    .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        background-color: var(--color-surface);
+        border-bottom: 1px solid transparent;
+        transition: box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .site-header.is-scrolled {
+        border-bottom-color: var(--color-border);
+        box-shadow: 0 6px 24px rgb(48 41 89 / 0.08);
+    }
+
+    .header-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        flex-shrink: 0;
+        border-radius: 8px;
+        color: var(--color-heading);
+        transition: background-color 0.2s ease;
+    }
+
+    .header-icon:hover {
+        background-color: var(--color-light);
+    }
+
+    .main-menu > li {
+        position: relative;
+    }
+
+    .main-menu > li > a {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        padding: 10px 11px;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 20px;
+        color: var(--color-heading);
+        transition: color 0.2s ease;
+    }
+
+    .main-menu > li > a:hover,
+    .main-menu > li.is-active > a {
+        color: var(--color-primary-500);
+    }
+
+    .main-menu .sub-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        z-index: 60;
+        width: 280px;
+        padding: 8px;
+        background-color: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: 10px;
+        box-shadow: 0 16px 40px rgb(48 41 89 / 0.12);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(6px);
+        transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+    }
+
+    .main-menu > li:hover > .sub-menu,
+    .main-menu > li:focus-within > .sub-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    .main-menu .sub-menu a {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        padding: 8px 12px;
+        border-radius: 6px;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 22px;
+        color: var(--color-heading);
+        transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .main-menu .sub-menu a:hover,
+    .main-menu .sub-menu li.is-active > a {
+        color: var(--color-primary-500);
+        background-color: var(--color-light);
+    }
+
+    .lang-switch a {
+        color: var(--color-heading);
+    }
+
+    .lang-switch a:hover {
+        color: var(--color-primary-500);
+    }
+
+    .lang-switch a[aria-current='true'] {
+        color: var(--color-primary-500);
+    }
+
+    /* ---------- Menu lateral ---------- */
+    .offcanvas-panel {
+        transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .offcanvas-menu > li {
+        border-bottom: 1px solid var(--color-border);
+    }
+
+    .offcanvas-menu a {
+        display: block;
+        padding: 12px 0;
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--color-heading);
+    }
+
+    .offcanvas-menu a:hover,
+    .offcanvas-menu .is-active > a {
+        color: var(--color-primary-500);
+    }
+
+    /* ---------- Topo das páginas internas ---------- */
+    .page-banner {
+        position: relative;
+        overflow: hidden;
+        padding: 40px 0;
+        background-color: var(--color-light);
+        background-size: cover;
+        background-position: 50% 50%;
+    }
+
+    @media (width >= 64rem) {
+        .page-banner {
+            padding: 56px 0;
+        }
+    }
+
+    .page-banner[style]::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-color: rgb(29 26 58 / 0.78);
+    }
+
+    .page-banner__title {
+        max-width: 860px;
+        margin-top: 8px;
+        font-size: clamp(28px, 4vw, 40px);
+        font-weight: 800;
+        line-height: 1.2;
+        color: var(--color-heading);
+    }
+
+    .page-banner[style] .page-banner__title,
+    .page-banner[style] .breadcrumbs,
+    .page-banner[style] .breadcrumbs a {
+        color: #fff;
+    }
+
+    .breadcrumbs {
+        font-size: 14px;
+    }
+
+    .breadcrumbs a {
+        transition: color 0.2s ease;
+    }
+
+    .breadcrumbs a:hover,
+    .breadcrumbs [aria-current='page'] {
+        color: var(--color-primary-500);
+    }
+
+    /* ---------- Rodapé ---------- */
+    .site-footer {
+        border-top: 1px solid var(--color-border);
+        background-color: var(--color-surface);
+    }
+
+    .site-footer__logo {
+        width: 110px;
+        height: auto;
+        padding: 4px 6px;
+        border-radius: 6px;
+        background-color: #fff;
+    }
+
+    .footer-title {
+        margin-bottom: 14px;
+        font-size: 16px;
+        font-weight: 700;
+    }
+
+    .footer-links a {
+        display: inline-block;
+        padding: 4px 0;
+        font-size: 14px;
+        transition: color 0.2s ease;
+    }
+
+    .footer-links a:hover,
+    .footer-contact a:hover,
+    .footer-bottom a:hover,
+    .footer-bottom button:hover {
+        color: var(--color-primary-500);
+    }
+
+    .footer-contact li {
+        position: relative;
+        padding: 0 0 10px 30px;
+        font-size: 14px;
+    }
+
+    .footer-contact__icon {
+        position: absolute;
+        left: 0;
+        top: 1px;
+        width: 20px;
+        height: 20px;
+        color: var(--color-secondary-500);
+    }
+
+    .footer-social a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        color: #fff;
+        background-color: var(--color-brand);
+        transition: background-color 0.2s ease;
+    }
+
+    .footer-social a:hover {
+        background-color: var(--color-secondary-500);
+    }
+
+    .footer-bottom {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 18px 0;
+        border-top: 1px solid var(--color-border);
+        font-size: 13px;
+        text-align: center;
+    }
+
+    @media (width >= 48rem) {
+        .footer-bottom {
+            flex-direction: row;
+            text-align: left;
+        }
+    }
+
+    /* ---------- Botões flutuantes ---------- */
+    .scroll-up {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 42px;
+        height: 42px;
+        border-radius: 8px;
+        color: #fff;
+        background-color: var(--color-brand);
+        box-shadow: 0 6px 18px rgb(48 41 89 / 0.3);
+        transition: transform 0.2s ease;
+    }
+
+    .scroll-up:hover {
+        transform: translateY(-3px);
+    }
+}
+
+/*
+ * Entrada do topo da página (hero e banner) só com CSS: arranca logo, sem
+ * esperar pelo JavaScript das animações (AOS), para o título aparecer
+ * depressa mesmo em 3G.
+ */
+@layer components {
+    .rise {
+        animation: rise 0.8s cubic-bezier(0.215, 0.61, 0.355, 1) both;
+    }
+
+    .rise--left {
+        animation-name: rise-left;
+    }
+
+    .rise--d1 {
+        animation-delay: 0.12s;
+    }
+
+    .rise--d2 {
+        animation-delay: 0.24s;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .rise {
+            animation: none;
+        }
+    }
+}
+
+@keyframes rise {
+    from {
+        opacity: 0;
+        transform: translate3d(0, 30px, 0);
+    }
+}
+
+@keyframes rise-left {
+    from {
+        opacity: 0;
+        transform: translate3d(40px, 0, 0);
+    }
+}
+
+/*
+ * Foco visível ao navegar com o teclado (WCAG 2.4.7): contorno índigo
+ * com halo branco, legível em fundos claros e escuros.
+ */
+@layer base {
+    :where(a, button, [role="button"], summary, [tabindex]:not([tabindex="-1"])):focus-visible {
+        outline: 3px solid var(--color-primary-600);
+        outline-offset: 2px;
+        box-shadow: 0 0 0 5px #fff;
+        border-radius: 4px;
+    }
+}

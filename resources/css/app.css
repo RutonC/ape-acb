@@ -1,0 +1,114 @@
+@import 'tailwindcss';
+@import './site.css';
+@import './blocks.css';
+@import './portal.css';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+
+/*
+ * Tokens de design da APE, com as cores do logótipo.
+ *
+ *   Índigo #302959: botões e superfícies da marca (fixo nos dois modos)
+ *   Verde #226433: destaques
+ *   primary: ligações e destaques (mais claro no modo escuro)
+ */
+@theme {
+    --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+    --font-heading: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+
+    --color-brand: #302959;
+    --color-brand-dark: #231d43;
+    --color-surface: #fff;
+
+    --color-primary-50: #f0eff8;
+    --color-primary-100: #e1dff0;
+    --color-primary-200: #c6c2e0;
+    --color-primary-300: #a29dc9;
+    --color-primary-400: #6d65a3;
+    --color-primary-500: #302959;
+    --color-primary-600: #2a2450;
+    --color-primary-700: #231d43;
+    --color-primary-800: #1c1736;
+    --color-primary-900: #15112a;
+
+    --color-secondary-400: #3a8a50;
+    --color-secondary-500: #226433;
+    --color-secondary-600: #1c542a;
+    --color-secondary-700: #164421;
+
+    --color-dark-900: #17142c;
+    --color-dark-800: #211d3b;
+    --color-dark-700: #2c2749;
+    --color-dark-600: #3a3459;
+
+    /* Texto e fundos */
+    --color-body: #5a6072;
+    --color-heading: #1d1a3a;
+    --color-light: #f2f2fa;
+    --color-light-2: #f8f8fc;
+    --color-border: #e3e3ef;
+
+    --radius-card: 0.75rem;
+    --shadow-card: 0 8px 30px rgba(48, 41, 89, 0.09);
+    --shadow-card-hover: 0 15px 45px rgba(48, 41, 89, 0.18);
+
+    --container-site: 1280px;
+}
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        @apply font-sans text-body antialiased;
+        font-size: 16px;
+        line-height: 1.7;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        @apply font-heading text-heading;
+        line-height: 1.25;
+        font-weight: 700;
+    }
+}
+
+/* Modo escuro: escolhido no cabeçalho e guardado no browser. */
+[data-theme='dark'] {
+    color-scheme: dark;
+
+    --color-brand: #4f4690;
+    --color-brand-dark: #453d80;
+
+    --color-surface: #1c1934;
+    --color-body: #bcbad0;
+    --color-heading: #f3f2f9;
+    --color-light: #25213f;
+    --color-light-2: #211d3a;
+    --color-border: #38335a;
+
+    --color-primary-50: #2d2850;
+    --color-primary-100: #38325f;
+    --color-primary-200: #4a4378;
+    --color-primary-300: #7f78b8;
+    --color-primary-500: #b7b1e6;
+    --color-primary-600: #c5c0ec;
+    --color-primary-700: #d2cef1;
+    --color-secondary-500: #6fc98b;
+}
+
+[data-theme='dark'] .bg-white {
+    background-color: var(--color-surface);
+}
+
+[x-cloak] {
+    display: none !important;
+}
+
+@utility container-site {
+    width: 100%;
+    max-width: var(--container-site);
+    margin-inline: auto;
+    padding-inline: 15px;
+}
